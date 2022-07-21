@@ -20,16 +20,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-    - name: Create repository
-      # https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/create-repository.html
-      run: |
-        aws ecr create-repository \
-          --repository-name ${{ env.ECR_REPOSITORY }} \
-          --query 'repository.repositoryUri' \
-          --output text \
-          2>/dev/null
-
-
+    
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
